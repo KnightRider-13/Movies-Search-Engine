@@ -319,7 +319,7 @@ form{
 
 #footer{
     width: 100%;
-    margin: 80px 0 0 0;
+    margin: 36px 0 0 0;
     background-color: #f2f2f2;
     display: block;
 }
@@ -487,6 +487,7 @@ form{
     form{
         width: 100%;
         max-width: 500px;
+        margin: 24px 0 84px 0;
     }
     .header__button{
         width: 150px;
@@ -502,11 +503,11 @@ form{
 @media(max-width: 768px){
     .header__title{
         font-size: 36px;
-        margin-top: -30px;
+        margin-top: 48px;
     }
     .header__sub-title{
         font-size: 20px;
-        margin: 20px 0;
+        margin: 12px 0;
     }
     .header__img--wrapper{
         width: 100%;
@@ -515,6 +516,7 @@ form{
     form{
         width: 100%;
         max-width: 400px;
+        margin: 48px 0 84px 0;
     }
     .header__input{
         font-size: 20px;
