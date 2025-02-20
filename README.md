@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# Movie Search App (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is a Movie Search Application built using React. It utilizes the OMDb API to fetch and display movie data based on a user's search query.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Description📝](#description)
+- [Features✨](#features)
+- [Screenshots 📸](#screenshots)
+- [Code Highlights🔍](#code-highlights)
+- [Installation🛠️](#installation)
+- [Future Improvements🛠️](#future-improvements)
+- [Credits⚖️](#credits)
+- [Contributing🤝](#contributing)
+- [Contact📧](#contact)
+- [License⚖️](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Search Functionality: Search for movies using keywords.
+- Dynamic Movie Rendering: Displays movie results dynamically with their poster, title, and release year.
+- Sorting Options: Filter movies by release date (Newest to Oldest or vice versa).
+- User Alerts: Displays an alert for unavailable features (e.g., contact function).
+- Browse random movies.
+- Click on a movie to view its detailed information on a separate page.
 
-### `npm test`
+## Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img width="503" alt="OMD Home" src="https://github.com/user-attachments/assets/c44051f5-337b-4ac5-a089-4242917b044d" />
 
-### `npm run build`
+<img width="461" alt="OMD Results" src="https://github.com/user-attachments/assets/01d32afd-4fd0-436a-a49e-720d54ab285d" />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="679" alt="Random Movies" src="https://github.com/user-attachments/assets/26de8fe8-9b47-4b90-b32e-cf13603f228a" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img width="776" alt="Movie Info" src="https://github.com/user-attachments/assets/62977fbd-32b6-46ef-b138-0411f52c4b1f" />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Code Highlights
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. Main Movie Search Logic
+```javascript
+async function main(keyword){
+    const promise = await fetch(`http://www.omdbapi.com/?apikey=af3cb781&s=${keyword}`);
+    const moviesData = await promise.json();
+    movies = moviesData.Search.slice(0, 6);
+    filteringMovies(movies, filter);
+    if(movies){
+        movieContainer.innerHTML = movies.map(movie => movieHtml(movie)).join("");
+    }
+    else{
+        movieContainer.classList += " no-movies";
+        movieContainer.innerHTML = "<h3>No Movies Found</h3>";
+    }
+}
+```
+### 2. Sorting Logic
+```javascript
+function filteringMovies(movies, filter){
+    if(filter === "NEW_TO_OLD"){
+        movies.sort((a, b) => (b.Year - a.Year));
+    }
+    else if(filter === "OLD_TO_NEW"){
+        movies.sort((a, b) => (a.Year - b.Year));
+    }
+    movieContainer.innerHTML = movies.map(movie => movieHtml(movie)).join("");
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
+### 1. Clone the repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git clone https://github.com/KnightRider-13/Movies-Search-Engine.git
+```
+### 2. Install dependencies: 
+  ```bash
+   npm install
+  ```
+ 
+### 3. Start the development server: 
+  ```bash
+   npm start
+  ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Dependencies
+OMDb API: An API key is required. Replace apikey=af3cb781 in the code with your own API key.
 
-## Learn More
+## Future Improvements
+Add more filtering options, such as genre or ratings.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Include a contact form with backend support.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Credits
+OMDb API for movie data.
+Designed and developed by Ismaa'eel Fahmay
 
-### Code Splitting
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Contributions are welcome! To contribute: 
 
-### Analyzing the Bundle Size
+Fork the repository. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Create a new branch (git checkout -b feature/YourFeature). 
 
-### Making a Progressive Web App
+Commit your changes (git commit -m 'Add YourFeature'). 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Push to the branch (git push origin feature/YourFeature). 
 
-### Advanced Configuration
+Create a pull request. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contact
+Ismaa'eel – www.linkedin.com/in/ismaaeel-fahmay – fahmay17@gmail.com
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project does not have a license. If you'd like to use the code, please contact me for permission.
